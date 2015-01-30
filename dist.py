@@ -19,7 +19,10 @@ class DDist:
     @staticmethod
     def normalize_probability_table(table):
         total = sum([table.get(e, 0) for e in table.keys()])
-        return {key : table[key]/total for key in table.keys()}
+        if total > 0:
+            return {key : table[key]/total for key in table.keys()}
+        else:
+            return {}
 
     @staticmethod
     def make_conditional_from_joint(joint):
